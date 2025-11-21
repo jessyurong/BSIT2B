@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login - Facedook style</title>
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="logo">facedook</div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <h1 class="hero-title">Facedook</h1>
+            <p class="hero-sub">Connect with friends and the world around you on Facedook.</p>
+        </section>
+
+        <aside class="auth">
+            <div class="login-card">
+                <form class="login-form" action="login.php" method="post" novalidate>
+                    <label for="email" class="sr-only">Email or phone</label>
+                    <input id="email" name="email" type="text" placeholder="Email or phone" required>
+
+                    <label for="password" class="sr-only">Password</label>
+                    <input id="password" name="password" type="password" placeholder="Password" required>
+
+                    <button class="btn login-btn" type="submit">Log In</button>
+
+                    <div id="loginMessage" style="margin-top:8px;color:crimson;font-weight:600;display:none"></div>
+
+                    <a class="forgot" href="#">Forgotten password?</a>
+
+                    <div class="divider" aria-hidden="true"></div>
+
+                    <button class="btn create-btn" type="button">Create new account</button>
+                </form>
+            </div>
+
+            <p class="create-page">Create a Page for a celebrity, band or business.</p>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">English (US)</a>
+            <a href="#">Español</a>
+            <a href="#">Filipino</a>
+            <a href="#">Chingchung</a>
+            <a href="#">Insikk</a>
+        </div>
+        <small class="copyright">© 2025 Facedook</small>
+    </footer>
+
+        <!-- Signup modal -->
+        <div class="modal" id="signupModal" aria-hidden="true">
+            <div class="modal-backdrop" id="modalBackdrop"></div>
+            <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+                <div class="modal-header">
+                    <h2 id="signupTitle">Create new account</h2>
+                    <button class="modal-close" id="closeModal" aria-label="Close">×</button>
+                </div>
+                <form id="signupForm" class="modal-form">
+                    <input id="fullName" name="fullName" type="text" placeholder="Full name" required>
+                    <input id="signupEmail" name="email" type="email" placeholder="Email address" required>
+                    <input id="signupPassword" name="password" type="password" placeholder="Password" required>
+                    <input id="signupConfirm" name="confirm" type="password" placeholder="Confirm password" required>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn" id="cancelBtn">Cancel</button>
+                        <button type="submit" class="btn create-btn">Sign Up</button>
+                    </div>
+                </form>
+                <div id="signupMessage" class="signup-message" aria-live="polite"></div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+        <script>
+            // show login error if redirected with ?login=failed
+            (function(){
+                const params = new URLSearchParams(window.location.search);
+                const m = params.get('login');
+                if(m === 'failed'){
+                    const el = document.getElementById('loginMessage');
+                    if(el){ el.textContent = 'Invalid email or password.'; el.style.display = 'block'; }
+                }
+            })();
+        </script>
+
+</body>
+</html>
